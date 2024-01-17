@@ -1,12 +1,12 @@
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $name = $_POST["name"];
+    $name = $_POST["name"];
     $email = $_POST["email"];
     $phone = $_POST["subject"];
     $message = $_POST["message"];
 
-    $to = "karasucyber@gmail.com"; /
+    $to = "karasucyber@gmail.com"; 
     $subject = "Nova mensagem do formulário de contato";
 
     $email_body = "Nome: $name\n";

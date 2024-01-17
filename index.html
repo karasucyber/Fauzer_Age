@@ -844,7 +844,7 @@
           </div>
 
           <div class="col-lg-6">
-            <form action="/contact.php" method="post" role="form" class="php-email-form">
+            <form action="https://formsubmit.co/karasucyber@gmail.com" method="post" role="form" >
               <div class="row">
                     <div class="col form-group">
                         <input type="text" name="name" class="form-control" id="name" placeholder="Como devemos te chamar?" required>
@@ -868,6 +868,61 @@
             </form>
         </div>
         
+        <!-- Add this script to your HTML file -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Get the form element
+    var form = document.querySelector('form');
+
+    // Add event listener for the form submission
+    form.addEventListener('submit', function (event) {
+      // Prevent the default form submission
+      event.preventDefault();
+
+      // Display the loading message
+      var loadingMessage = document.querySelector('.loading');
+      loadingMessage.style.display = 'block';
+
+      // Gather form data
+      var formData = new FormData(form);
+
+      // Send the form data using fetch
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+      })
+        .then(function (response) {
+          // Hide the loading message
+          loadingMessage.style.display = 'none';
+
+          // Check if the response is successful (status code 2xx)
+          if (response.ok) {
+            // Display the success message
+            var successMessage = document.querySelector('.sent-message');
+            successMessage.style.display = 'block';
+
+            // Clear the form fields
+            form.reset();
+          } else {
+            // Display the error message
+            var errorMessage = document.querySelector('.error-message');
+            errorMessage.textContent = 'Erro ao enviar a mensagem. Por favor, tente novamente.';
+            errorMessage.style.display = 'block';
+          }
+        })
+        .catch(function (error) {
+          // Hide the loading message
+          loadingMessage.style.display = 'none';
+
+          // Display the error message
+          var errorMessage = document.querySelector('.error-message');
+          errorMessage.textContent = 'Erro ao enviar a mensagem. Por favor, tente novamente.';
+          errorMessage.style.display = 'block';
+        });
+    });
+  });
+</script>
+
   </main>
   <footer id="footer">
 
