@@ -842,36 +842,31 @@
               </div>
             </div>
           </div>
-    
           <div class="col-lg-6">
-            <!-- Formulário com o action ajustado para o arquivo PHP -->
-            <form action="Fauzer_Age/forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="col form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Como devemos te chamar?" required>
+            <form action="contact.php" method="post" role="form" class="php-email-form">
+                <div class="row">
+                    <div class="col form-group">
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Como devemos te chamar?" required>
+                    </div>
+                    <div class="col form-group">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Qual o seu e-mail?" required>
+                    </div>
                 </div>
-                <div class="col form-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Qual o seu e-mail?" required>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Digite seu telefone">
                 </div>
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Digite seu telefone">
-              </div>
-              <div class="form-group">
-                <textarea class="form-control" name="message" rows="5" placeholder="Digite aqui sua mensagem" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Enviando mensagem...</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Mensagem enviada com sucesso!</div>
-              </div>
-              <div class="text-center"><button type="submit">Enviar Mensagem</button></div>
+                <div class="form-group">
+                    <textarea class="form-control" name="message" rows="5" placeholder="Digite aqui sua mensagem" required></textarea>
+                </div>
+                <div class="my-3">
+                    <div class="loading">Enviando mensagem...</div>
+                    <div class="error-message"></div>
+                    <div class="sent-message">Mensagem enviada com sucesso!</div>
+                </div>
+                <div class="text-center"><button type="submit">Enviar Mensagem</button></div>
             </form>
-          </div>
         </div>
-      </div>
-    </section><!-- End Contact Section -->
-
+        
 
   </main><!-- End #main -->
 
