@@ -1,10 +1,22 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Verificar campos obrigatórios
+    if (empty($_POST["name"]) || empty($_POST["email"]) || empty($_POST["message"])) {
+        echo "error";
+        exit; // Terminar o script se campos obrigatórios não estiverem preenchidos
+    }
+
     // Recolher os dados do formulário
     $name = $_POST["name"];
     $email = $_POST["email"];
-    $phone = $_POST["subject"];
+    $phone = isset($_POST["subject"]) ? $_POST["subject"] : '';
     $message = $_POST["message"];
+
+    // Validar o e-mail
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "error";
+        exit; // Terminar o script se o e-mail não for válido
+    }
 
     // Configurar o destinatário e assunto do e-mail
     $to = "karasucyber@gmail.com";
@@ -17,13 +29,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email_body .= "Mensagem:\n$message";
 
     // Configurar os cabeçalhos do e-mail
-    $headers = "De: $email";
+    $headers = "From: $email\r\n";
+    $headers .= "Reply-To: $email\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
     // Enviar o e-mail
-    mail($to, $subject, $email_body, $headers);
-
-    // Responder ao formulário com mensagem de sucesso
-    echo "success";
+    if (mail($to, $subject, $email_body, $headers)) {
+        echo "success";
+    } else {
+        echo "error";
+    }
 } else {
     // Se o método de requisição não for POST, responder com erro
     echo "error";
