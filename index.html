@@ -844,25 +844,61 @@
           </div>
 
           <div class="col-lg-6">
-            <form action="/contact.php" method="post" role="form" class="php-email-form">
+            <form id="emailForm" method="post" role="form" class="php-email-form">
               <div class="row">
-                    <div class="col form-group">
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Como devemos te chamar?" required>
-                    </div>
-                    <div class="col form-group">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Qual o seu e-mail?" required>
-                    </div>
+                <div class="col form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Como devemos te chamar?" required>
                 </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Digite seu telefone">
+                <div class="col form-group">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Qual o seu e-mail?" required>
                 </div>
-                <div class="form-group">
-                    <textarea class="form-control" name="message" rows="5" placeholder="Digite aqui sua mensagem" required></textarea>
-                </div>  
-                <div class="text-center"><button type="submit">Enviar Mensagem</button></div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Digite seu telefone">
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="message" rows="5" placeholder="Digite aqui sua mensagem" required></textarea>
+              </div>  
+              <div class="text-center"><button type="button" onclick="enviarEmail()">Enviar Mensagem</button></div>
             </form>
-        </div>
-        
+          </div>
+          <script>
+            function enviarEmail() {
+              // Obter dados do formulário
+              const name = document.getElementById('name').value;
+              const email = document.getElementById('email').value;
+              const subject = document.getElementById('subject').value;
+              const message = document.querySelector('textarea[name="message"]').value;
+          
+              // Montar objeto com os dados
+              const formData = {
+                name,
+                email,
+                subject,
+                message
+              };
+          
+              // Enviar dados para o servidor
+              fetch('http://localhost:3000/contact', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+              })
+              .then(response => response.json())
+              .then(data => {
+                console.log('Success:', data);
+                alert('E-mail enviado com sucesso!');
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+                alert('Erro no envio do e-mail. Por favor, tente novamente mais tarde.');
+              });
+            }
+          </script>
+          
+          
   </main>
   <footer id="footer">
 
