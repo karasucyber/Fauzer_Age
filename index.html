@@ -26,6 +26,32 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script src="index.js"></script>
+  <script type="text/javascript">
+      function SendMail() {
+          var params = {
+              name: document.getElementById("nome").value,
+              email: document.getElementById("email").value,
+              phone: document.getElementById("telefone").value,
+              text: document.getElementById("message").value,
+          };
+
+          const serviceID = "service_8c54czs";
+          const templateID = "template_85cdk89";
+
+          emailjs.send(serviceID, templateID, params)
+              .then((res) => {
+                  document.getElementById("nome").value = "";
+                  document.getElementById("email").value = "";
+                  document.getElementById("telefone").value = "";
+                  document.getElementById("message").value = "";
+                  console.log(res);
+                  alert("Email enviado com sucesso");
+              })
+              .catch((err) => console.log(err));
+      }
+  </script>
 
 </head>
 
@@ -854,36 +880,32 @@
    })();
 </script>
 
-          <div class="col-lg-6">
-            <form ref="form" onsubmit="sendEmail" action="index.js"  class="php-email-form">
-              <div class="row">
-                <div class="col form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Como devemos te chamar?" required>
-                </div>
-                <div class="col form-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Qual o seu e-mail?" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Digite seu telefone">
-              </div>
-              <div class="form-group">
-                <textarea class="form-control" name="message" rows="5" placeholder="Digite aqui sua mensagem" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Enviando mensagem...</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Mensagem enviada com sucesso!</div>
-              </div>
-              <div class="text-center"><button type="submit" onclick="sendEmail()">Enviar Mensagem</button></div>
-            </form>
-          </div>
-
+<div class="col-lg-6">
+  <form onsubmit="SendMail(); return false;" class="php-email-form">
+    <div class="row">
+            <div class="col form-group">
+                <input type="text" name="name" class="form-control" id="nome" placeholder="Como devemos te chamar?" required>
+            </div>
+            <div class="col form-group">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Qual o seu e-mail?" required>
+            </div>
         </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="subject" id="telefone" placeholder="Digite seu telefone">
+        </div>
+        <div class="form-group">
+            <textarea class="form-control" name="message" rows="5" placeholder="Digite aqui sua mensagem" required></textarea>
+        </div>
+        <div class="my-3">
+            <div class="loading">Enviando mensagem...</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Mensagem enviada com sucesso!</div>
+        </div>
+        <div class="text-center"><button type="submit">Enviar Mensagem</button></div>
+    </form>
+</div>
 
-      </div>
-    </section><!-- End Contact Section -->
-
+ 
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
