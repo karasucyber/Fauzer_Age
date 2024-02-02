@@ -5,12 +5,12 @@ function SendMail() {
         phone: document.getElementById("telefone").value,
     };
 
-    const serviceID = "service_8c54czs";
-    const templateID = "template_85cdk89";
+    const serviceID = "service_m2swido";
+    const templateID = "template_8n9ge8g";
 
     emailjs.send(serviceID, templateID, params)
         .then((res) => {
-            document.getElementById("name").value = "";
+            document.getElementById("nome").value = "";  // Corrected from "name" to "nome"
             document.getElementById("email").value = "";
             document.getElementById("telefone").value = "";
             console.log(res);
@@ -18,4 +18,3 @@ function SendMail() {
         })
         .catch((err) => console.log(err));
 }
-
